@@ -20,13 +20,17 @@ struct SingleTranslationView: View {
             Button("Translate") {
                 titleTranslation.toggle()
             }
-            .translationPresentation(isPresented: $titleTranslation, text: viewModel.title)
+            .translationPresentation(isPresented: $titleTranslation, text: viewModel.title) { translatedText in
+                viewModel.title = translatedText
+            }
             .padding()
             Text(viewModel.body)
             Button("Translate") {
                 bodyTranslation.toggle()
             }
-            .translationPresentation(isPresented: $bodyTranslation, text: viewModel.body)
+            .translationPresentation(isPresented: $bodyTranslation, text: viewModel.body) { translatedText in
+                viewModel.body = translatedText
+            }
             .padding()
             Text(viewModel.errorMessages ?? "")
         }
