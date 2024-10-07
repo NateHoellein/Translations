@@ -14,19 +14,16 @@ struct TranslationsApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                NavigationView {
-                    TabView {
-                        SingleTranslationView(viewModel: SingleViewModel())
-                            .tabItem {
-                                Label("Single", systemImage: "text.viewfinder")
-                            }
-                        BatchTranslationView().environment(batchViewModel)
-                            .tabItem {
-                                Label("Batch", systemImage: "text.redaction")
-                            }
-                    }
+                TabView {
+                    SingleTranslationView(viewModel: SingleViewModel())
+                        .tabItem {
+                            Label("Single", systemImage: "text.viewfinder")
+                        }
+                    BatchTranslationView().environment(batchViewModel)
+                        .tabItem {
+                            Label("Batch", systemImage: "text.redaction")
+                        }
                 }
-                .navigationTitle("Translations")
             }
         }
     }

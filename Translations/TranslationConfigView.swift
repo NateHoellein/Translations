@@ -41,7 +41,7 @@ struct TranslationConfigView: View {
             HStack {
                 Spacer()
                 if let supported = viewModel.isTranslationSupported {
-                    Text(supported ? "" : "")
+                    Text(supported ? "✅" : "❌")
                         .font(.largeTitle)
                     if !supported {
                         Text("Translation between the same language doesn't work.")

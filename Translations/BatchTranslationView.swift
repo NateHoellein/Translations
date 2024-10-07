@@ -17,10 +17,9 @@ struct BatchTranslationView: View {
     var body: some View {
         
         VStack {
-            Text(viewModel.title)
-                .padding()
-            Text(viewModel.body)
-                .padding()
+            List(viewModel.rows) { row in
+                RowView(title: row.title, subtitle: row.subtitle, imageName: row.image)
+            }
             Text(viewModel.errorMessages ?? "")
             Menu("Translate Menu") {
                 NavigationLink {
@@ -38,6 +37,8 @@ struct BatchTranslationView: View {
         .translationTask(configuration) { session in
             Task {
                 await viewModel.translateAllAtOnce(using: session)
+                configuration?.invalidate()
+                configuration = nil
             }
         }
     }
